@@ -12,6 +12,6 @@ Toro::serve(array(
     "/bookRequest" => "\Controller\BookRequest",
     "/returnBooks"=>"\Controller\ReturnBooks",
     "/issueBooks"=>"\Controller\IssueBooks",
-
+    "/logout"=>"\Controller\Logout"
     
 ));
