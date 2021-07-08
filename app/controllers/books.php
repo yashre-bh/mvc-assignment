@@ -123,14 +123,14 @@ class IssueBooks{
             \Model\Admin::acceptBookRequest($bookId);
             
         }
-        else if ($adminAction === 0){
-            
+        // else if ($adminAction === 0){
+        else{   
             \Model\Admin::rejectBookRequest($bookId); 
         }
 
-        else
-        {
-            \Model\Admin::clearReturnedBooks($bookId); 
-        }
+        // else
+        // {
+        //     \Model\Admin::clearReturnedBooks($bookId); 
+        // }
     }
 }
