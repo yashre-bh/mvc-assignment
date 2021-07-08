@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    {# <div class = "navbar"> #}
+    <nav class = "navbar">
+        <h4>Pending Requests</h4>
+        <ul>
+            <li><a href="/main">Dashboard</a></li>
+        </ul>
+    </nav>
+    {# <div> #}
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+
+   <thead>
+    <tr>
+      <th colspan="8" style="text-align: center;">Requested</th>
+
+    </tr>
+  </thead> 
+  <thead>
+    <tr>
+      <th scope="col">ISBN</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">User</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Request Date</th>
+      <th scope="col">Action</th>
+      <th scope="col"></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% if list %}
+					{% for item in list %}
+              <tr>
+                <th scope="row">{{item.isbn}}</th>
+                <td>{{item.title}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.request_date}}</td>
+                <td><button id="{{item.id}}" type="button" onclick="acceptReq({{item.id}})" class="btn btn-success">Accept</button></td>
+                <td><button id="{{item.id}}" type="button" onclick="rejectReq({{item.id}})"class="btn btn-danger">Reject</button></td>
+                
+              </tr>
+          {% endfor %}
+         {% else %}
+					<tr>
+						<td colspan="8" style="text-align: center;">No books requested currently</td>
+					</tr>
+	    {% endif %}
+  
+    </tbody>
+    </table>
+  </div>
+
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+
+   <thead>
+    <tr>
+      <th colspan="8" style="text-align: center;">Issued</th>
+
+    </tr>
+    </thead> 
+    <thead>
+    <tr>
+      <th scope="col">ISBN</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">User</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Request Date</th>
+      <th scope="col">Issue Date</th>
+      {# <th scope="col">Return Date</th> #}
+
+      <th scope="col"></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% if list %}
+					{% for item in issued %}
+              <tr>
+                <th scope="row">{{item.isbn}}</th>
+                <td>{{item.title}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.request_date}}</td>
+                <td>{{item.issue_date}}</td>
+                {# <td></td> #}
+                
+              </tr>
+          {% endfor %}
+         {% else %}
+					<tr>
+						<td colspan="8" style="text-align: center;">No books to show</td>
+					</tr>
+	    {% endif %}
+  
+    </tbody>
+    </table>
+    </div>
+
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+
+   <thead>
+    <tr>
+      <th colspan="8" style="text-align: center;">Returned</th>
+    </tr>
+  </thead> 
+  <thead>
+    <tr>
+      <th scope="col">ISBN</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">User</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Issue Date</th>
+      <th scope="col">Return Date</th>
+      {# <th scope="col">Clear</th> #}
+    </tr>
+  </thead>
+  <tbody>
+    {% if list %}
+					{% for item in returned %}
+              <tr>
+                <th scope="row">{{item.isbn}}</th>
+                <td>{{item.title}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.issue_date}}</td>
+                <td>{{item.return_date}}</td>
+                {# <td><button id="{{item.id}}" type="button" onclick="clear({{item.id}})" class="btn btn-success">Clear</button></td> #}
+                
+                {# <td></td> #}
+                
+              </tr>
+          {% endfor %}
+         {% else %}
+					<tr>
+						<td colspan="8" style="text-align: center;">No books to show</td>
+					</tr>
+	    {% endif %}
+  
+  </tbody>
+    </table>
+    </div>
+
+
+    <script>
+        function acceptReq(bookId) {
+            $.ajax({
+            type: "POST",
+            url: "/issueBooks",
+            data: {
+                    id: bookId,
+                    status: 1
+                }
+            });
+            console.log('acc'+" "+bookId);;
+            location.reload(true);
+
+        }
+        function rejectReq(bookId) {
+            $.ajax({
+            type: "POST",
+            url: "/issueBooks",
+            data: {
+                    id: bookId,
+                    status: 0
+                }
+            });
+            console.log('rej'+" "+bookId);
+            location.reload(true);
+        }
+      
+
+    </script>
+    
+</body>
+</html>

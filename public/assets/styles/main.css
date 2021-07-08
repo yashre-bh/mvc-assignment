@@ -1,0 +1,86 @@
+body{
+    background-color: teal;
+    /* overflow: hidden; */
+}
+
+nav{
+    
+    font-family: 'Playfair Display', serif;
+    background-color: #073763;
+    color: #ffffff;
+    padding : 10px 40px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #ffffff;
+}
+
+nav li{
+    list-style: none;
+}
+
+nav li a{
+    text-decoration: none;
+    color:#ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: large;
+    padding: 10px 12px;
+
+}
+
+nav li a.hover{
+    text-decoration: none;
+    
+    
+}
+
+
+.jumbotron{
+    background-color: white;
+    padding: 5%;
+    margin: 2%;
+    border-radius: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.card{
+    background-color: white;
+    margin: 2%;
+    padding: 2%;
+    border-radius: 10px;
+    font-family: 'Playfair Display', serif;
+}
+.table-responsive{
+    background-color: white;
+    margin: 4%;
+    margin-top: 8%;
+    justify-content: space-around;
+    border-radius: 2px;
+    font-family: 'Playfair Display', serif;
+}
+
+.table{
+    margin-top: 0%;
+    background-color: white;
+    font-family: 'Playfair Display', serif;
+}
+
+.navbar{
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+/* .scroll {
+    overflow: auto;
+    height: 100%;
+    padding: 0;
+    margin-left: 37px;
+}
+ */

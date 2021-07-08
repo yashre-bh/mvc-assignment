@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles/main.css">
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    {# <div class = "navbar"> #}
+    <nav class = "navbar">
+        <h4>Book List</h4>
+        <ul>
+            <li><a href="/main">Dashboard</a></li>
+            {% if status != "request" %}
+            <li><a href="/addBooks">Add a Book</a></li>
+            {% endif %}
+            {# <li><a href="/register">Register</a></li> #}
+        </ul>
+    </nav>
+    {# <div> #}
+    {{ hello }}
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ISBN</th>
+      <th scope="col">Book Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Select</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% if books %}
+					{% for book in books %}
+              <tr>
+                <th scope="row">{{book.isbn}}</th>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.genre}}</td>
+                {% if status!='request' %}
+                <td><input type="checkbox" name="select" id="{{book.isbn}}"></td>
+                {% else %}
+                  {% set val = 0 %}
+                  {% for s in bookStatus %}
+                    {% if s.isbn == book.isbn%}
+                      {% set val = 1 %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% if val == 0 %}
+                    <td><input type="checkbox" name="select" id="{{book.isbn}}"></td>
+                  {% else %}
+                    <td>Not Available</td>
+                  {% endif %}
+
+                {% endif %}
+              </tr>
+          {% endfor %}
+      {% else %}
+					<tr>
+						<td colspan="8" style="text-align: center;">No books to show</td>
+					</tr>
+				{% endif %}
+  </tbody>
+    </table>
+    <center>
+    {% if status != "request" %}
+        <button method="POST" onclick="checktags()" action="/booksUpdate"  class="btn btn-primary">{{ msg }}</button>
+    {% else %}
+        <button method="POST" onclick="checktags1()" action="/bookRequest"  class="btn btn-primary">{{ msg }}</button>
+    {% endif %}
+    <br><br>
+    </center>
+
+</div>
+
+
+
+    {# <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script> #}
+    <script>
+      function checktags() {
+          var books_checked = [];
+          var checkbox = document.querySelectorAll('input[type=checkbox]:checked');
+          for (var i = 0; i < checkbox.length; i++) {
+            books_checked.push(checkbox[i].id);
+          }
+          $.ajax({
+            type: "POST",
+            url: "/booksUpdate",
+            data: {
+              book: books_checked
+            }
+            });
+            location.reload(true);
+          }
+
+      function checktags1(){
+        console.log('ok, request initiated');
+        var books_checked = [];
+        var checkbox = document.querySelectorAll('input[type=checkbox]:checked');
+        for (var i = 0; i < checkbox.length; i++) {
+            books_checked.push(checkbox[i].id);
+          }
+        console.log(books_checked);
+
+        $.ajax({
+            type: "POST",
+            url: "/bookRequest",
+            data: {
+              book: books_checked
+            }
+            });
+            alert("The following books are requested: " + books_checked);
+            location.reload(true);
+          }
+      
+	</script>
+   
+</body>
+</html>
