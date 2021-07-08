@@ -14,8 +14,8 @@ class Admin{
     public static function issuedList()
     {
         $db = \DB::get_instance();
-        $stmt= $db->prepare("SELECT * FROM book_status LEFT JOIN books ON book_status.isbn=books.isbn LEFT JOIN users ON book_status.email= users.email WHERE book_status.status= 'issued' ORDER BY book_status.id");
-        $stmt->execute();
+        $stmt= $db->prepare("SELECT * FROM book_status LEFT JOIN books ON book_status.isbn=books.isbn LEFT JOIN users ON book_status.email= users.email WHERE book_status.status= (?) ORDER BY book_status.id");
+        $stmt->execute(['issued']);
         $rows= $stmt->fetchAll();
         return $rows;
     }
