@@ -1,12 +1,12 @@
 body{
-    background-color: teal;
+    background-color: rgb(147, 230, 193);
     /* overflow: hidden; */
 }
 
 nav{
     
     font-family: 'Playfair Display', serif;
-    background-color: #073763;
+    background-color: #00203FFF;
     color: #ffffff;
     padding : 10px 40px;
     display: flex;
@@ -15,24 +15,40 @@ nav{
 }
 
 nav ul{
+    
+    
     display: flex;
     justify-content: space-around;
     align-items: center;
     color: #ffffff;
+    padding: 0;
+    margin: 0;
 }
 
 nav li{
+    height: 100%;
     list-style: none;
+    margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
-nav li a{
+nav li a, h4{
+    height: 100%;
     text-decoration: none;
     color:#ffffff;
     text-decoration: none;
     font-weight: bold;
     font-size: large;
     padding: 10px 12px;
+    margin: 0
 
+}
+
+h4{
+    display: block;
+    margin: auto;
+    margin-left: 0;
 }
 
 nav li a.hover{
@@ -42,27 +58,71 @@ nav li a.hover{
 }
 
 
+
 .jumbotron{
+    
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 5%;
     margin: 2%;
     border-radius: 20px;
     font-family: 'Playfair Display', serif;
 }
 
-.card{
+div.jumbotron > *{
+    
+    text-align: center;
+    color: black;
+    display: flex ;
+    justify-content: center;
+}
+
+
+.card-container{
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+.card, .card-form{
     background-color: white;
     margin: 2%;
     padding: 2%;
+    width: 45%;
+    text-align: center;
     border-radius: 10px;
     font-family: 'Playfair Display', serif;
 }
+
+.card-form{
+    width: auto;
+    align-self: center;
+    text-align: left;
+}
+.card-body{
+    /* margin: 0;
+    width: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.btn{
+    background-color:#00203FFF ;
+    width: auto;
+    /* top: 95%; */
+    align-self: center;
+    padding: 4px 15px;
+}
+
 .table-responsive{
     background-color: white;
     margin: 4%;
     margin-top: 8%;
     justify-content: space-around;
-    border-radius: 2px;
+    border-radius: 10px;
     font-family: 'Playfair Display', serif;
 }
 
