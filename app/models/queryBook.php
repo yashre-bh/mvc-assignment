@@ -83,7 +83,7 @@ class Book
     public static function requestedList($email)
     {
         $db = \DB::get_instance();
-        $stmt= $db->prepare("SELECT * FROM book_status LEFT JOIN books ON book_status.isbn=books.isbn WHERE (book_status.status= 'requested' AND book_status.email= (?)) ORDER BY book_status.id");
+        $stmt= $db->prepare("SELECT * FROM book_status LEFT JOIN books ON book_status.isbn=books.isbn WHERE (book_status.status= 'requested' AND book_status.email= ?) ORDER BY book_status.id");
         $stmt->execute([$email]);
         $rows= $stmt->fetchAll();
         return $rows;
