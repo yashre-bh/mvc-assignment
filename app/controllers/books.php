@@ -91,6 +91,7 @@ class ReturnBooks{
         echo \View\Loader::make()->render("templates/returnBooks.twig", array(
             "books" => \Model\Book::booksIssuedByUser($email),
             "rejected" => \Model\Book::rejectedList($email),
+            "requested" => \Model\Book::requestedList($email),
         ));
     }
     public function post()
