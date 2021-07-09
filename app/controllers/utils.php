@@ -2,6 +2,7 @@
 
 namespace Controller;
 session_start();
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 class Utils
 {
@@ -36,25 +37,4 @@ class Utils
                 $flag=false;
         return $flag;
     }
-    // public static function checkIssue()
-    // {
-    //     $rows1 = \Model\Book::getSpecificIssue();
-    //     $rows2 = \Model\Book::getAll();
-    //     $rows=array();
-    //     $flag=false;
-    //     foreach ($rows2 as $i) {
-    //         foreach ($rows1 as $j) {
-      
-    //           if ($i["book_id"] === $j["book_id"]) {
-    //             $flag = true;
-    //             break;
-    //           }
-    //         }
-    //         if ($flag === false && (int)$i['capacity'] > 0) {
-    //           array_push($rows, $i);
-    //         }
-    //         $flag = false;
-    //       }
-    //     return $rows;
-    // }
 }

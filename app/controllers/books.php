@@ -2,6 +2,7 @@
 
 namespace Controller;
 session_start();
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 class BookUpdate{
     public function get()
@@ -124,14 +125,8 @@ class IssueBooks{
             \Model\Admin::acceptBookRequest($bookId);
             
         }
-        // else if ($adminAction === 0){
         else{   
             \Model\Admin::rejectBookRequest($bookId); 
         }
-
-        // else
-        // {
-        //     \Model\Admin::clearReturnedBooks($bookId); 
-        // }
     }
 }

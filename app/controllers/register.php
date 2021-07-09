@@ -1,6 +1,7 @@
 <?php
 
 namespace Controller;
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 session_start(); 
 
 class Register{
@@ -36,10 +37,6 @@ class Register{
                     else{
                         \Model\User::insert_admin($name, $email, $hash);
                     }
-                    // echo \View\Loader::make()->render("templates/userHome.twig");
-                    // ,array(
-                    //     "books" => \Model\Book::getSpecific('remind',''),
-                    // ));
                     session_unset();
                     session_destroy();
                     $_SESSION['name'] = $name;

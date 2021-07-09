@@ -6,7 +6,7 @@ session_start();
 class Login{
 
     public function get(){
-        if($_SESSION['loggedIn']){
+        if(isset($_SESSION['loggedIn'])){
             header('Location: /main');
         }
         else{
