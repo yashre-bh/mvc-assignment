@@ -25,4 +25,7 @@ An online library management system, using PHP, MySQL database, Twig templates a
 4. The site can be accessed at `http://mvc.sdslabs.local/` in your web browser.
 
 
+Thank you [@vmpyr](https://github.com/vmpyr) for helping me out with the front end!
+
+
 
