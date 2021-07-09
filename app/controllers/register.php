@@ -45,7 +45,7 @@ class Register{
                     $_SESSION['name'] = $name;
                     $_SESSION['role'] = \Model\User::find_user($name, $email, $hash)["role"];
                     $_SESSION['log'] = true;
-                    header('Location: /main');
+                    header('Location: /login');
                 }
 
                 else {echo \View\Loader::make()->render("templates/register.twig", array(
