@@ -93,7 +93,7 @@
     </tr>
     </thead>
     <tbody>
-    {% if list %}
+    {% if issued %}
 					{% for item in issued %}
               <tr>
                 <th scope="row">{{item.isbn}}</th>
@@ -137,7 +137,7 @@
     </tr>
   </thead>
   <tbody>
-    {% if list %}
+    {% if returned %}
 					{% for item in returned %}
               <tr>
                 <th scope="row">{{item.isbn}}</th>
